@@ -25,8 +25,9 @@ maxSpeed_table = table[maxSpeed]
 weight_table = table[weight]
 acceleration_table = table[acceleration]
 numberSeats_table = table[numberSeats]
-
+# Убираем пропуски
 maxSpeed_table.update(maxSpeed_table.replace(np.nan, default_maxSpeed))
+# Убираем шумы
 table.loc[(table[maxSpeed] < min_maxSpeed), maxSpeed] = default_maxSpeed
 
 weight_table.update(weight_table.replace(np.nan, default_weight))
@@ -35,7 +36,7 @@ table.loc[(table[weight] < min_weight), weight] = default_weight
 acceleration_table.update(acceleration_table.replace(np.nan, default_acceleration))
 table.loc[(table[acceleration] < max_acceleration), acceleration] = default_acceleration
 
-numberSeats_table.update(numberSeats_table.replace(0, default_numberSeats))
+numberSeats_table.update(numberSeats_table.replace(np.nan, default_numberSeats))
 table.loc[(table[numberSeats] > max_numberSeats), numberSeats] = default_numberSeats
 
 table.to_csv('newCarInfo.csv', index=False)
