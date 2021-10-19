@@ -29,15 +29,10 @@ def normalized_array(input_array):
                     input_array))
 
 
-maxSpeed_table = normalized_array(maxSpeed_table)
-weight_table = normalized_array(weight_table)
-acceleration_table = normalized_array(acceleration_table)
-numberSeats_table = normalized_array(numberSeats_table)
-
-output_table = DataFrame({maxSpeed: maxSpeed_table,
-                          weight: weight_table,
-                          acceleration: acceleration_table,
-                          numberSeats: numberSeats_table})
+output_table = DataFrame({maxSpeed: normalized_array(maxSpeed_table),
+                          weight: normalized_array(weight_table),
+                          acceleration: normalized_array(acceleration_table),
+                          numberSeats: normalized_array(numberSeats_table)})
 
 print('минимальный вес автомобиля: ', output_table[weight].min())
 print('самый быстрый разгон до 100км/ч: ', output_table[acceleration].min())
