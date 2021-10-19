@@ -1,11 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn.linear_model import LinearRegression
-
-pd.set_option('display.max_rows', 1000)
-pd.set_option('display.max_columns', 1000)
-pd.set_option('display.width', 1000)
-pd.set_option("display.precision", 2)
+import matplotlib.pyplot as plt
 
 maxSpeed = 'max speed'
 weight = 'weight'
@@ -19,5 +15,11 @@ y = np.array(table[acceleration])
 
 model = LinearRegression().fit(x, y)
 r_sq = model.score(x, y)
+
+fig, ax = plt.subplots(figsize=(10, 6))
+ax.scatter(x=table[maxSpeed], y=table[weight], color="blue", edgecolors="white", linewidths=0.1, alpha=0.7)
+plt.xlabel("Максимальная скорость")
+plt.ylabel("Вес")
+plt.show()
 
 print('coefficient of determination: ', r_sq)
